@@ -1,4 +1,3 @@
-from sys import maxsize
 from tkinter import Scale
 import cv2
 
@@ -16,13 +15,14 @@ for i in range(2,7):
     #scaleFactor(fator de escala):Parâmetro que especifica o quanto o tamanho da imagem é reduzido em cada escala de imagem.
     #minNeighbors(minVizinhos):Parâmetro que especifica quantos vizinhos cada retângulo candidato deve ter para retê-lo.
     #minSize:Tamanho mínimo possível do objeto. Objetos menores que isso são ignorados.
-    faces = carregaAlgoritmo.detectMultiScale(imgCinza,scaleFactor=1.02,minNeighbors=2,maxSize=(50,50))
-    print(faces)
+    faces = carregaAlgoritmo.detectMultiScale(imgCinza,scaleFactor=1.5,minNeighbors=7,minSize=(50,50))
+    print(faces,len(faces))
 
     #eixos -> x,y
     #altura -> a
     #largura -> l
     for(x, y, l, a) in faces:
-        cv2.rectangle(img,(x,y),(x+l,y+a),(0,255,0),2)
+        cv2.rectangle(img,(x,y),(x+l,y+a),(0,0,255),2)
     cv2.imshow('Faces',img) 
-    cv2.waitKey(500)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
